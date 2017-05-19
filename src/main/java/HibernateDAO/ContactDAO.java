@@ -90,21 +90,57 @@ Session session;
 	
 		return contact;
 	}
-	public void updateContact(Contact contact) {
-	    Transaction trns = null;
-	    Session session = HibernateUtil.getSessionFactory().openSession();
-	    try {
-	        trns = session.beginTransaction();
-	        session.update(contact);
-	        session.getTransaction().commit();
-	    } catch (RuntimeException e) {
-	        if (trns != null) {
-	            trns.rollback();
-	        }
-	        e.printStackTrace();
-	    } finally {
-	        session.flush();
-	        session.close();
-	    }
+	public void updateContact(int id , String nom, String prenom , String telephone , String type,String email){
+		Contact cat = new Contact() ; 
+		Session session = setSession();
+		
+		try{
+			session.beginTransaction();
+			cat = session.get(Contact.class, id);
+			cat.setId(id);
+			cat.setNom(nom);
+			cat.setPrenom(prenom);
+			cat.setTelephone(telephone);
+			cat.setEmail(email);
+			cat.setType(type);
+			session.update(cat);
+			session.getTransaction().commit();
+			
+			
+		}catch(HibernateException hb){
+			hb.printStackTrace();
+			if(session.getTransaction()!=null){
+				session.getTransaction().rollback();
+			}
+			
+		}finally{
+			if(session!=null){
+				session.close();
+			}
+		}
 	}
+	public void deleteContact(int idA){
+		Contact c = null;
+		
+		Session session = setSession();		
+		try{
+			session.beginTransaction();
+			c = session.get(Contact.class, idA);
+			session.delete(c);
+			session.getTransaction().commit();
+		}catch(HibernateException he){
+			System.out.println("ERROR!!");
+			if(session.getTransaction()!=null)
+				session.getTransaction().rollback();
+		}finally{
+			if(session!=null){
+				try{
+					session.close();
+				}catch(Exception ex ){
+					ex.printStackTrace();
+				}
+			}
+		}
+	}
+	
 }

@@ -21,6 +21,7 @@
 		<input type="text" class="input" name="email" placeholder="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 		<br>
 		<button  type="submit" class="btn btn-primary">Valider</button>
+		<a href="AfficherContact"><button  type="submit" class="btn btn-primary">Retour</button></a>
 	</form>
 </div>
 

@@ -86,9 +86,9 @@ tr:nth-child(even) {
 			<td>${ contact.type }</td>
 			<td>${ contact.email }</td> 
 			<td>
-				<form action = "modifier" method="GET">
-					<button type="submit" class="btn btn-primary" name='${ contact.id }'>Modifier</button>
-				</form>
+				<a href="AfficherContact?id=${contact.id}"><button type="submit" class="btn btn-primary" id="contact" name='contactId'>Modifier</button></a>
+				<a href="AfficherContact?idS=${contact.id}"><button type="submit" class="btn btn-primary" id="contact" name='contactId'>Supprimer</button></a>
+				
 			</td>
 		</tr>
 			</c:forEach>

@@ -1,4 +1,5 @@
-<form method="post" action="Contact">
+<form method="post" action="AfficherContact">
+	<input type="hidden" name="id" value=${contact.id }>
 	<input type="text" class="input" name="nom" placeholder="Nom" required
 		pattern="[A-Za-z]{1,15}$" value="${ contact.nom }"> <br>
 	<input type="text" class="input" name="prenom" placeholder="Prenom"
@@ -11,5 +12,5 @@
 	<input type="text" class="input" name="email" placeholder="email"
 		required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 		value="${ contact.email }"> <br>
-	<button class="btn btn-primary">Valider</button>
+	<button class="btn btn-primary">Modifier</button>
 </form>

@@ -12,8 +12,7 @@ public class ModifierServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	System.out.println(req.getParameter("name"));
+		System.out.println("hello");
 	req.getRequestDispatcher("modifier.jsp").forward(req, resp);
 	}
 }
