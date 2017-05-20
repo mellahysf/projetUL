@@ -26,9 +26,14 @@ public class AfficherContactServlet extends HttpServlet {
 			
 			
 		}
+		
+		// afficherContact start :
 		List<Contact> contacts=new ArrayList<Contact>();
 		ContactDAO CDAO=new ContactDAO();
-		contacts=CDAO.selectAllData();		
+		contacts=CDAO.selectAllData();	
+		// end
+		
+		
 		req.setAttribute("contacts", contacts);
 		if(req.getParameter("id")!=null){
 			Map cont=new HashMap();
@@ -70,5 +75,18 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	resp.sendRedirect("AfficherContact");
 
 }
+	/*
+	 * recuperer tous les contacts
+	 */
+	public List<Contact> afficherContact(){
+		List<Contact> contacts=new ArrayList<Contact>();
+		ContactDAO CDAO=new ContactDAO();
+		contacts=CDAO.selectAllData();
+		return contacts;
+	}
+	
+	public void updateContact(HttpServletRequest request){
+		
+	}
 
 }
