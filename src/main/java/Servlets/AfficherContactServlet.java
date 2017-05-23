@@ -18,6 +18,8 @@ import HibernateDAO.ContactDAO;
 public class AfficherContactServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		if(req.getParameter("idS")!=null){
 			int id = Integer.parseInt(req.getParameter("idS"));
 			ContactDAO cdao = new ContactDAO();
@@ -74,19 +76,6 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	//UDAO.updateContact(contact);
 	resp.sendRedirect("AfficherContact");
 
-}
-	/*
-	 * recuperer tous les contacts
-	 */
-	public List<Contact> afficherContact(){
-		List<Contact> contacts=new ArrayList<Contact>();
-		ContactDAO CDAO=new ContactDAO();
-		contacts=CDAO.selectAllData();
-		return contacts;
-	}
-	
-	public void updateContact(HttpServletRequest request){
-		
 	}
 
 }

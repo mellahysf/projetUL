@@ -19,7 +19,7 @@ Session session;
 		return session;
 	}
 	//enregistrer des donnees dans la table categories
-	public void saveData(Contact contact){
+	public boolean saveData(Contact contact){
 		session=setSession();
 		try{
 			session.beginTransaction();
@@ -29,13 +29,15 @@ Session session;
 		}catch(HibernateException he){
 			he.printStackTrace();
 			if(session.getTransaction()!=null){
-				session.getTransaction().rollback();
+				return false;
+				//session.getTransaction().rollback();
 			}
 		}finally{
 			if(session!=null){
 				session.close();
 			}
 		}
+		return true;
 	}
 	//selectionner la liste des donnees
 	@SuppressWarnings("unchecked")
@@ -90,7 +92,7 @@ Session session;
 	
 		return contact;
 	}
-	public void updateContact(int id , String nom, String prenom , String telephone , String type,String email){
+	public boolean updateContact(int id , String nom, String prenom , String telephone , String type,String email){
 		Contact cat = new Contact() ; 
 		Session session = setSession();
 		
@@ -110,7 +112,8 @@ Session session;
 		}catch(HibernateException hb){
 			hb.printStackTrace();
 			if(session.getTransaction()!=null){
-				session.getTransaction().rollback();
+				return false;
+				//session.getTransaction().rollback();
 			}
 			
 		}finally{
@@ -118,8 +121,9 @@ Session session;
 				session.close();
 			}
 		}
+		return true;
 	}
-	public void deleteContact(int idA){
+	public boolean deleteContact(int idA){
 		Contact c = null;
 		
 		Session session = setSession();		
@@ -131,7 +135,8 @@ Session session;
 		}catch(HibernateException he){
 			System.out.println("ERROR!!");
 			if(session.getTransaction()!=null)
-				session.getTransaction().rollback();
+				return false;
+				//session.getTransaction().rollback();
 		}finally{
 			if(session!=null){
 				try{
@@ -141,6 +146,7 @@ Session session;
 				}
 			}
 		}
+		return true;
 	}
 	
 }
